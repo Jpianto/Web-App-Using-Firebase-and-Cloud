@@ -1,0 +1,95 @@
+/* Joshua Pianto 9/4/2025
+
+/* --- Layout primitives --- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* ---------- Login (logged-out) page background ---------- */
+.center-page {
+  background-image: url("/login-bg.png");  /* now .png */
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---------- Logged-in page background ---------- */
+.authed-page {
+  background-image: url("/clicks-bg.png"); /* now .png */
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---------- Card styling ---------- */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92); /* translucent */
+  backdrop-filter: saturate(120%) blur(2px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+/* ---------- Welcome image ---------- */
+.hero {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 9999px;
+  margin: 8px auto 16px;
+  display: block;
+}
+
+/* ---------- Headings & copy ---------- */
+h1, h2 { margin: 8px 0 12px; }
+p { margin: 0 0 16px; color: #4b5563; }
+
+/* ---------- Form ---------- */
+.form { margin-top: 8px; }
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+.input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96,165,250,0.25);
+}
+
+/* ---------- Buttons ---------- */
+.row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn.primary { background: #2563eb; color: white; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Counter badge ---------- */
+.counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 9999px;
+  background: #eef2ff;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 8px auto 16px;
+  transition: color 0.4s ease; /* smooth color change */
+}

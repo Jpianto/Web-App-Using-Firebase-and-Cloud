@@ -1,3 +1,4 @@
+//Joshua Pianto 9/2/2025
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'

@@ -5,7 +5,6 @@ import admin from "firebase-admin";
 import fs from "fs";
 
 function initAdmin() {
-  // If a local service account file exists, use it.
   try {
     const saPath = new URL("./serviceAccountKey.json", import.meta.url);
     const serviceAccount = JSON.parse(fs.readFileSync(saPath));
@@ -27,12 +26,12 @@ initAdmin();
 
 const app = express();
 
-// CORS: allow your local dev and (later) your Hosting domain
+// CORS: allow for local dev and Hosting domain
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",        // Vite dev
-      "https://<your-project>.web.app" // replace after Hosting deploy
+      "http://localhost:5173",        // Local dev
+      "https://web-app-dd054.web.app" // Hosting domain
     ],
     credentials: true,
   })
