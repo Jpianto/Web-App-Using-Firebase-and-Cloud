@@ -1,0 +1,7 @@
+# Joshua Pianto 9/3/2025 Root gitignore
+node_modules/
+dist/
+.env
+.env.*
+firebase-debug.log
+*.local
