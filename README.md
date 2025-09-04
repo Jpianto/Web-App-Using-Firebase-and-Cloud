@@ -1,56 +1,51 @@
-# Mini Web App – Firebase + React + Cloud Run by Joshua Pianto 
+# Mini Web App – Firebase + React + Cloud Run
 
-A tiny full-stack project that demonstrates:  
-- **Frontend** with React (Vite)  
-- **Auth** with Firebase Authentication (email/password)  
-- **Tracking** per-user click counts in Firestore  
-- **Usage display** so each user sees their own stats  
-- **Backend** with Node.js/Express deployed to Cloud Run  
-- **Hosting** with Firebase Hosting for the frontend  
-
----
-
-## 🚀 Live URLs  
-- **Frontend (React on Firebase Hosting)**: [https://web-app-dd054.web.app](https://web-app-dd054.web.app)  
-- **Backend (Cloud Run)**: [https://miniapp-backend-466493083919.us-central1.run.app](https://miniapp-backend-466493083919.us-central1.run.app)  
+A tiny full-stack project by Joshua Pianto that demonstrates:
+- **Frontend**: React (Vite)
+- **Auth**: Firebase Authentication (email/password)
+- **Tracking**: per-user click counts in Firestore
+- **Usage display**: each user sees their own stats
+- **Backend**: Node.js/Express deployed to Cloud Run
+- **Hosting**: Firebase Hosting for the frontend
 
 ---
 
-## 🛠️ Tech Stack  
-- **Frontend**: React (Vite), Firebase SDK  
-- **Auth**: Firebase Authentication (email/password)  
-- **Database**: Firestore (per-user docs)  
-- **Backend**: Node.js + Express + firebase-admin  
-- **Hosting**:  
-  - Frontend → Firebase Hosting  
-  - Backend → Google Cloud Run  
+## Live URLs
+- **Frontend (React on Firebase Hosting)**: https://web-app-dd054.web.app
+- **Backend (Cloud Run API)**: https://miniapp-backend-466493083919.us-central1.run.app/whoami
 
----
+## Tech Stack
+- **Frontend**: React (Vite), Firebase SDK
+- **Authentication**: Firebase Auth (email/password)
+- **Database**: Firestore (per-user docs)
+- **Backend**: Node.js + Express + firebase-admin
+- **Hosting**:
+  - Frontend → Firebase Hosting
+  - Backend → Google Cloud Run
 
-## 📂 Project Structure  
+## Project Structure
 ```
-frontend/   → React app
-backend/    → Express API
-firebase.json → Hosting config
+frontend/    → React app
+backend/     → Express API
+firebase.json → Firebase Hosting config
 ```
 
----
+## Setup Instructions
 
-## ⚙️ Setup Instructions  
+### 1. Clone the repo
 
-### 1. Clone the repo  
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/Jpianto/Web-App-Using-Firebase-and-Cloud.git
+cd Web-App-Using-Firebase-and-Cloud
 ```
+### 2. Frontend Setup
 
-### 2. Frontend Setup  
 ```bash
 cd frontend
 npm install
 ```
 
-Create a `.env` file inside `frontend/` and add your Firebase config:  
+Create a `.env` file inside `frontend/` with your Firebase config:
 
 ```
 VITE_FIREBASE_API_KEY=your_api_key
@@ -62,37 +57,38 @@ VITE_FIREBASE_APP_ID=1:1234567890:web:abcdef123456
 VITE_API_BASE_URL=https://miniapp-backend-466493083919.us-central1.run.app
 ```
 
-Run locally:  
+Run locally:
+
 ```bash
 npm run dev
 ```
 
-### 3. Backend Setup  
+### 3. Backend Setup
+
 ```bash
 cd backend
 npm install
 ```
 
-Run locally:  
+Run locally:
+
 ```bash
 npm run dev
 ```
 
 ---
 
-## 🌐 Deployment Steps  
+## Deployment Steps
 
-### Backend → Cloud Run  
+### Backend → Cloud Run
+
 ```bash
-gcloud builds submit --tag gcr.io/PROJECT_ID/miniapp-backend
-gcloud run deploy miniapp-backend \
-  --image gcr.io/PROJECT_ID/miniapp-backend \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated
+gcloud builds submit --tag gcr.io/web-app-dd054/miniapp-backend
+gcloud run deploy miniapp-backend   --image gcr.io/web-app-dd054/miniapp-backend   --platform managed   --region us-central1   --allow-unauthenticated
 ```
 
-### Frontend → Firebase Hosting  
+### Frontend → Firebase Hosting
+
 ```bash
 cd frontend
 npm run build
@@ -101,9 +97,10 @@ firebase deploy --only hosting
 
 ---
 
-## 🔒 Security Notes  
-- **Auth**: Email/password via Firebase Authentication  
-- **Firestore Rules**: Each user can only read/write their own doc at `/users/{uid}`  
+## Security Notes
+
+- **Authentication**: Firebase email/password.
+- **Firestore Rules**: Users can only access their own doc at `/users/{uid}`.
 
 ```js
 rules_version = '2';
@@ -115,10 +112,15 @@ service cloud.firestore {
   }
 }
 ```
+- **Backend Security**:
+  - `/whoami` verifies Firebase ID tokens using firebase-admin.
+  - Requests without valid tokens are rejected.
 
-- **Backend**: `/whoami` verifies Firebase ID tokens with firebase-admin  
-- **CORS**: Enabled for simplicity (in production, restrict to Hosting domain)  
+- **CORS**: Configured to only allow requests from:
+  - http://localhost:5173 (local dev)
+  - https://web-app-dd054.web.app (live site)
+  ## ✨ Extra Features
 
----
-
-
+- Added background images for login and click pages for a cleaner look.
+- Welcome banner image on login page to improve user experience.
+- Randomized color effect on click counter for visual feedback.
